@@ -1,0 +1,25 @@
+{
+    "name": "torfetch",
+    "description": "Fetch URL contents from the TOR network",
+    "version": "0.1.0",
+    "author" : "Andris Reinman",
+    "maintainers":[
+        {
+            "name":"andris",
+            "email":"andris@node.ee"
+        }
+    ],
+    "repository" : {
+        "type" : "git",
+        "url" : "http://github.com/andris9/torfetch.git"
+    },
+    "main" : "./index",
+    "licenses" : [
+        {
+            "type": "MIT",
+            "url": "http://github.com/andris9/torfetch/blob/master/LICENSE"
+        }
+    ],
+    "engines": ["node >=0.6.0"],
+    "keywords": ["tor", "url"]
+}
