@@ -19,6 +19,7 @@ module.exports = FetchTORUrl;
 function FetchTORUrl(url, options){
     Stream.call(this);
     this.readable = true;
+    self = this;
 
     options = options || {};
     options.hostname = options.hostname || "localhost";
@@ -57,7 +58,7 @@ function FetchTORUrl(url, options){
     
     var stateHeader = true, headers = "";
     
-    request.stdout.on('data', (function (data) {
+    request.stdout.on('data', function (data) {
         var str, match, lastpos;
         if(stateHeader){
             str = data.toString("binary");
@@ -65,24 +66,24 @@ function FetchTORUrl(url, options){
                 lastpos = match.index + match[0].length;
                 headers += str.substr(0, lastpos);
                 
-                this.emit("headers", parseHeaders(headers));
+                self.emit("headers", parseHeaders(headers));
                 stateHeader = false;
                 
-                this.emit("data", data.slice(lastpos));
+                self.emit("data", data.slice(lastpos));
             }else{
                 headers += str;
             }
         }else{
-            this.emit("data", data);
+            self.emit("data", data);
         }
-    }).bind(this));
+    })
     
     request.stderr.on('data', function (data) {
         //this.emit("error", new Error(data.toString("utf-8")));
     });
     
     request.on('exit', function (code) {
-        this.emit("end");
+        self.emit("end");
     });
 
 }
