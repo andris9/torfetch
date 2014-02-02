@@ -1,7 +1,7 @@
 {
     "name": "torfetch",
     "description": "Fetch URL contents from the TOR network",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "author" : "Andris Reinman",
     "maintainers":[
         {
